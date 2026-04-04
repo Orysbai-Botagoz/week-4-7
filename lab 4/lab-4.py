@@ -227,15 +227,34 @@ def generate_events(players: list[Player], items: list[Item], n: int) -> list[Ev
             all_events.append(new_event)
     return all_events
     pass
-# Создаем героев и предметы
-heroes = [Warrior(1, "Thorin", 100), Mage(2, "Gandalf", 80)]
-shop_items = [Item(1, "Health Potion", 0), Item(2, "Iron Sword", 15)]
 
-# Генерируем по 2 случайных события для каждого
-random_history = generate_events(heroes, shop_items, 2)
+#13 task
+def analyze_logs(events: list[Event]) -> dict:
+    types_list = [e.type for e in events]
+    counts = {}
+    for e_type in types_list:
+        if e_type in counts:
+            counts[e_type] += 1
+        else:
+            counts[e_type] = 1
+    most_common = max(counts, key=counts.get)
+    total_damage = 0
+    player_damage = {}
+    for e in events:
+        if e.type == "ATTACK":
+            total_damage += e.data["damage"]
+            player_obj = e.data["player"]
+            player_name = player_obj._name
+            if player_name in player_damage:
+                player_damage[player_name] += e.data["damage"]
+            else:
+                player_damage[player_name] = e.data["damage"]
+    top_player = max(player_damage, key=player_damage.get)
+    most_common_event = max(counts, key=counts.get)
+    return {
+        "total_damage": total_damage,
+        "top_player": top_player,
+        "most_common_event": most_common_event,
+    }
 
-# Считаем общий урон во всей этой истории через наш генератор из задачи №11
-total_damage = sum(damage_stream(random_history))
-
-print(f"Всего создано событий: {len(random_history)}")
-print(f"Общий суммарный урон всех атак: {total_damage} HP 💥")
+#14 task
