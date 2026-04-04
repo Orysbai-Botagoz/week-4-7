@@ -188,22 +188,54 @@ class Logger:
         return events
 
 
-tester_mage = Mage(10, "Moira", 80)
-magic_wand = Item(1, "Magic Wand", 15)
-loot_event = Event("LOOT", {"item": magic_wand})
+#10 task
+class EventIterator:
+    def __init__(self, events: list[Event]):
+        self.events = events
+        self.index = 0
+        pass
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if self.index < len(self.events):
+            event = self.events[self.index]
+            self.index += 1
+            return event
+        else:
+            raise StopIteration
 
-# 2. Записываем событие в файл
-file_name = "test_game.log"
-Logger.log(loot_event, tester_mage, file_name)
+#11 task
+def damage_stream(events: list[Event]): #генератор чтоб экономить память
+    for event in events:
+        if event.type == "ATTACK":
+            yield event.data["damage"]
+        pass
 
-# 3. Читаем логи и проверяем результат
-restored_events = Logger.read_logs(file_name)
+#12 task
+import random
+def generate_events(players: list[Player], items: list[Item], n: int) -> list[Event]:
+    get_random_event = lambda: random.choice(["ATTACK", "LOOT"])
+    all_events = []
+    for player in players:
+        for _ in range(n):
+            e_type = get_random_event()
+            if e_type == "LOOT":
+                e_data = {"item": random.choice(items)}
+            elif e_type == "ATTACK":
+                e_data = {"damage": random.randint(1, 100)}
+            new_event = Event(e_type, e_data)
+            all_events.append(new_event)
+    return all_events
+    pass
+# Создаем героев и предметы
+heroes = [Warrior(1, "Thorin", 100), Mage(2, "Gandalf", 80)]
+shop_items = [Item(1, "Health Potion", 0), Item(2, "Iron Sword", 15)]
 
-if restored_events:
-    last_event = restored_events[-1]
-    print(f"✅ Тип события: {last_event.type}")
-    print(f"✅ Данные события: {last_event.data}")
+# Генерируем по 2 случайных события для каждого
+random_history = generate_events(heroes, shop_items, 2)
 
-    # Проверим, что данные превратились обратно в словарь
-    if isinstance(last_event.data, dict):
-        print("🚀 Успех: Данные снова стали словарем!")
+# Считаем общий урон во всей этой истории через наш генератор из задачи №11
+total_damage = sum(damage_stream(random_history))
+
+print(f"Всего создано событий: {len(random_history)}")
+print(f"Общий суммарный урон всех атак: {total_damage} HP 💥")
