@@ -240,7 +240,10 @@ class Mage(Player):
             item = event.data.get("item")
             if item:
                 item.power *= 1.1
-                pass
+                self.inventory.add_item(item)
+        else:
+            super().handle_event(event)
+        pass
         super().handle_event(event)
 
 #19 task
