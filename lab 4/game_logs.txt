@@ -1,20 +1,20 @@
-2026-04-07 17:51:55;1;LOOT;{'item': "Item(id=102, name='Staff', power=60)"}
-2026-04-07 17:51:55;2;LOOT;{'item': "Item(id=102, name='Staff', power=66.0)"}
-2026-04-07 17:51:55;1;ATTACK;{'damage': '80'}
-2026-04-07 17:51:55;2;ATTACK;{'damage': '80'}
-2026-04-07 17:51:55;1;ATTACK;{'damage': '10'}
-2026-04-07 17:51:55;2;ATTACK;{'damage': '10'}
-2026-04-07 17:51:55;1;LOOT;{'item': "Item(id=102, name='Staff', power=66.0)"}
-2026-04-07 17:51:55;2;LOOT;{'item': "Item(id=102, name='Staff', power=72.60000000000001)"}
-2026-04-07 17:51:55;1;ATTACK;{'damage': '61'}
-2026-04-07 17:51:55;2;ATTACK;{'damage': '61'}
-2026-04-07 17:51:55;1;LOOT;{'item': "Item(id=102, name='Staff', power=72.60000000000001)"}
-2026-04-07 17:51:55;2;LOOT;{'item': "Item(id=102, name='Staff', power=79.86000000000001)"}
-2026-04-07 17:51:55;1;ATTACK;{'damage': '20'}
-2026-04-07 17:51:55;2;ATTACK;{'damage': '20'}
-2026-04-07 17:51:55;1;ATTACK;{'damage': '40'}
-2026-04-07 17:51:55;2;ATTACK;{'damage': '40'}
-2026-04-07 17:51:55;1;ATTACK;{'damage': '8'}
-2026-04-07 17:51:55;2;ATTACK;{'damage': '8'}
-2026-04-07 17:51:55;1;ATTACK;{'damage': '1'}
-2026-04-07 17:51:55;2;ATTACK;{'damage': '1'}
+2026-04-07 17:52:59;1;LOOT;{'item': "Item(id=103, name='Shield', power=30)"}
+2026-04-07 17:52:59;2;LOOT;{'item': "Item(id=103, name='Shield', power=33.0)"}
+2026-04-07 17:52:59;1;LOOT;{'item': "Item(id=103, name='Shield', power=33.0)"}
+2026-04-07 17:52:59;2;LOOT;{'item': "Item(id=103, name='Shield', power=36.300000000000004)"}
+2026-04-07 17:52:59;1;ATTACK;{'damage': '92'}
+2026-04-07 17:52:59;2;ATTACK;{'damage': '92'}
+2026-04-07 17:52:59;1;ATTACK;{'damage': '90'}
+2026-04-07 17:52:59;2;ATTACK;{'damage': '90'}
+2026-04-07 17:52:59;1;ATTACK;{'damage': '55'}
+2026-04-07 17:52:59;2;ATTACK;{'damage': '55'}
+2026-04-07 17:52:59;1;ATTACK;{'damage': '49'}
+2026-04-07 17:52:59;2;ATTACK;{'damage': '49'}
+2026-04-07 17:52:59;1;ATTACK;{'damage': '7'}
+2026-04-07 17:52:59;2;ATTACK;{'damage': '7'}
+2026-04-07 17:52:59;1;LOOT;{'item': "Item(id=103, name='Shield', power=36.300000000000004)"}
+2026-04-07 17:52:59;2;LOOT;{'item': "Item(id=103, name='Shield', power=39.93000000000001)"}
+2026-04-07 17:52:59;1;LOOT;{'item': "Item(id=101, name='Axe', power=40)"}
+2026-04-07 17:52:59;2;LOOT;{'item': "Item(id=101, name='Axe', power=44.0)"}
+2026-04-07 17:52:59;1;LOOT;{'item': "Item(id=101, name='Axe', power=44.0)"}
+2026-04-07 17:52:59;2;LOOT;{'item': "Item(id=101, name='Axe', power=48.400000000000006)"}
