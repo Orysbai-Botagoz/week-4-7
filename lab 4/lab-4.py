@@ -258,3 +258,5 @@ def analyze_logs(events: list[Event]) -> dict:
     }
 
 #14 task
+decide_action = lambda p: "ATTACK" if p._hp >= 30 and p.inventory.items else("HEAL" if p._hp < 30 else "LOOT")
+
