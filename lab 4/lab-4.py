@@ -260,3 +260,22 @@ def analyze_logs(events: list[Event]) -> dict:
 #14 task
 decide_action = lambda p: "ATTACK" if p._hp >= 30 and p.inventory.items else("HEAL" if p._hp < 30 else "LOOT")
 
+#15 task
+class Warrior(Player):
+    def handle_event(self, event: Event):
+        if event.type == "ATTACK":
+            damage = event.data["damage"]
+            damage *= 0.9
+            self._hp = max(self._hp - damage, 0)
+        else:
+            super().handle_event(event)
+class Mage(Player):
+    def handle_event(self, event: Event):
+        if event.type == "LOOT":
+            item = event.data.get("item")
+            if item:
+                item.power *= 1.1
+                pass
+        super().handle_event(event)
+
+
