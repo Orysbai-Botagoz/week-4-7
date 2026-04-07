@@ -1,18 +1,28 @@
 #4 task
 class Inventory:
     def __init__(self):
-        self.items = []
+        self._items = []
     def add_item(self, item):
-        if not any(existing_item.id == item.id for existing_item in self.items):
-            self.items.append(item)
+        if not any(existing_item.id == item.id for existing_item in self._items):
+            self._items.append(item)
     def remove_item(self, item_id: int):
-        self.items = [item for item in self.items if item.id != item_id]
+        self._items = [item for item in self._items if item.id != item_id]
     def get_items(self) -> list:
-        return self.items
+        return self._items
     def unique_items(self) -> set:
-        return set(self.items)
+        return set(self._items)
     def to_dict(self) -> dict:
-        return {item.id: item for item in self.items}
+        return {item.id: item for item in self._items}
+    #18 task
+    def __iter__(self):
+        return iter(self._items)
+# 5 task
+    def get_strong_items(self, min_power: int) -> list:
+        check_power = lambda item: item.power >= min_power
+        return [item for item in self._items if check_power(item)]
+inv = Inventory()
+strong_items = [item for item in inv if item.power > 50]
+
 
 #1 task
 from tkinter import EventType
@@ -23,7 +33,7 @@ class Player:
         self._id = _id
         self._name = _name.strip().title()
         self._hp = max(0, _hp)
-        self.inventory = Inventory()
+        self._inventory = Inventory()
 
     def __str__(self):
         return f"Player(id={self._id}, name='{self._name}', hp={self._hp}')"
@@ -51,6 +61,19 @@ class Player:
             if item:
                 self.inventory.add_item(item)
 
+    @property
+    def hp(self):
+        return self._hp
+    @hp.setter
+    def hp(self, value):
+        self._hp = max(0, value)
+    @property
+    def inventory(self):
+        return self._inventory
+
+
+
+
 
 #2 task
     @classmethod
@@ -63,8 +86,7 @@ class Player:
                 return None
         except (ValueError, IndexError): #Если формат неверный
             raise ValueError("Неверный формат строки") #Принудительный вызов ошибки
-p = Player.from_string("2, alice , 90")
-print(p)
+
 
 #3 task
 class Item:
@@ -87,29 +109,9 @@ class Item:
         return self.id == other.id
     def __hash__(self):
         return hash(self.id)
-i = Item(1, " Sword ", 50)
-print(i)
+    def __repr__(self): #set ті көруге ыңғайлы
+        return f"Item(id={self.id}, name='{self.name}', power={self.power})"
 
-#4 task
-class Inventory:
-    def __init__(self):
-        self.items = []
-    def add_item(self, item):
-        if not any(existing_item.id == item.id for existing_item in self.items):
-            self.items.append(item)
-    def remove_item(self, item_id: int):
-        self.items = [item for item in self.items if item.id != item_id]
-    def get_items(self) -> list:
-        return self.items
-    def unique_items(self) -> set:
-        return set(self.items)
-    def to_dict(self) -> dict:
-        return {item.id: item for item in self.items}
-
-#5 task
-    def get_strong_items(self, min_power: int) -> list:
-        check_power = lambda item: item.power >= min_power
-        return [item for item in self.items if check_power(item)]
 
 #6 task
 from datetime import datetime
@@ -121,40 +123,7 @@ class Event:
     def __str__(self):
         return f'Event(type={self.type}, data={self.data}, timestamp={self.timestamp})'
 
-e = Event("ATTACK", {"damage": 20})
-print(e)
 
-#7 task
-class Warrior(Player):
-    def handle_event(self, event: Event):
-       if event.type == "ATTACK":
-           resuced_damage = event.data.get("damage", 0) * 0.9
-           self._hp = max(0, self._hp - resuced_damage)
-           pass
-       else:
-           super().handle_event(event)
-class Mage(Player):
-    def handle_event(self, event: Event):
-        if event.type == "LOOT":
-            item = event.data.get("item")
-            if item:
-                item.power *= 1.1
-            super().handle_event(event)
-            pass
-        else:
-            super().handle_event(event)
-mage = Mage(1, "Gandalf", 100)
-staff = Item(10, "Magic Staff", 50)
-loot_event = Event("LOOT", {"item": staff})
-mage.handle_event(loot_event)
-print(f"Здоровье мага: {mage._hp}")
-items = mage.inventory.get_items()
-print(f"Количество предметов в инвентаре: {len(items)}")
-
-if items:
-    found_item = items[0]
-    print(f"Предмет: {found_item.name}")
-    print(f"Финальная сила (с учетом бонуса мага 10%): {found_item.power}")
 
 #8 task
 import ast
@@ -230,27 +199,23 @@ def generate_events(players: list[Player], items: list[Item], n: int) -> list[Ev
 
 #13 task
 def analyze_logs(events: list[Event]) -> dict:
-    types_list = [e.type for e in events]
+    if not events:
+        return {"total_damage": 0, "top_player": "None", "most_common_event": "None"}
     counts = {}
-    for e_type in types_list:
-        if e_type in counts:
-            counts[e_type] += 1
-        else:
-            counts[e_type] = 1
-    most_common = max(counts, key=counts.get)
     total_damage = 0
     player_damage = {}
     for e in events:
+        counts[e.type] = counts.get(e.type, 0) + 1
         if e.type == "ATTACK":
-            total_damage += e.data["damage"]
-            player_obj = e.data["player"]
-            player_name = player_obj._name
-            if player_name in player_damage:
-                player_damage[player_name] += e.data["damage"]
-            else:
-                player_damage[player_name] = e.data["damage"]
-    top_player = max(player_damage, key=player_damage.get)
-    most_common_event = max(counts, key=counts.get)
+            damage_val = int(e.data.get("damage", 0))
+            total_damage += damage_val
+            player_name = "Simulation Player"
+            if "player" in e.data:
+                p = e.data["player"]
+                player_name = getattr(p, "_name", str(p))
+            player_damage[player_name] = player_damage.get(player_name, 0) + damage_val
+    most_common_event = max(counts, key=counts.get) if counts else "None"
+    top_player = max(player_damage, key=player_damage.get) if player_damage else "No combat"
     return {
         "total_damage": total_damage,
         "top_player": top_player,
@@ -260,7 +225,7 @@ def analyze_logs(events: list[Event]) -> dict:
 #14 task
 decide_action = lambda p: "ATTACK" if p._hp >= 30 and p.inventory.items else("HEAL" if p._hp < 30 else "LOOT")
 
-#15 task
+#7 and 15 task
 class Warrior(Player):
     def handle_event(self, event: Event):
         if event.type == "ATTACK":
@@ -278,4 +243,50 @@ class Mage(Player):
                 pass
         super().handle_event(event)
 
+#19 task
+def analyze_inventory(inventory: Inventory) -> dict:
+    items = list(inventory)
+    if not items:
+        return {"unique_items": set(), "top_power": None}
+    unique_items = set(items)
+    top_power_item = max(items, key=lambda item: item.power)
+    return {
+        "unique_items": unique_items, # set уникальных предметов
+        "top_power": top_power_item, #предмет с наибольшей силой
+    }
 
+#20 task
+def main():
+    warrior = Warrior(1, "Konan", 120)
+    mage = Mage(2, "Gandalf", 80)
+    players = [warrior, mage]
+    items = [
+        Item(101, "Axe", 40),
+        Item(102, "Staff", 60),
+        Item(103, "Shield", 30)
+    ]
+    all_events = generate_events(players, items, 5)
+    log_file = "game_logs.txt"
+    open(log_file, "w").close()
+    for event in all_events:
+        for player in players:
+            player.handle_event(event)
+            Logger.log(event, player, log_file)
+    loaded_events = Logger.read_logs(log_file)
+    print("=== ФИНАЛЬНАЯ СИМУЛЯЦИЯ АЯҚТАЛДЫ ===")
+    top_collector = max(players, key=lambda p: len(p.inventory.get_items()))
+    print(f"Максималды зат саны бар ойыншы: {top_collector._name} ({len(top_collector.inventory.get_items())} зат)")
+    try:
+        stats = analyze_logs(loaded_events)
+        print(f"Ең көп зиян келтірген: {stats['top_player']}")
+        print(f"Жалпы статистика: {stats['most_common_event']} оқиғасы ең көп болды")
+    except Exception as e:
+        print(f"Аналитика кезінде қате: {e}")
+    for p in players:
+        p_stats = analyze_inventory(p.inventory)
+        if p_stats['top_power']:
+            print(f"{p._name} инвентарындағы ең күшті зат: {p_stats['top_power'].name}")
+        else:
+            print (f"{p._name} инвентары бос.")
+if __name__ == "__main__":
+        main()

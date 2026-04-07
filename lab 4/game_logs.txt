@@ -1,3 +1,20 @@
-2026-04-02 13:23:46;77;LOOT;{'item': <__main__.Item object at 0x10105bed0>}
-2026-04-02 13:26:30;77;LOOT;{'item': <__main__.Item object at 0x100893ed0>}
-2026-04-02 13:26:58;77;LOOT;{'item': "Item(id=5, name='Steel Shield', power=30)"}
+2026-04-07 17:51:55;1;LOOT;{'item': "Item(id=102, name='Staff', power=60)"}
+2026-04-07 17:51:55;2;LOOT;{'item': "Item(id=102, name='Staff', power=66.0)"}
+2026-04-07 17:51:55;1;ATTACK;{'damage': '80'}
+2026-04-07 17:51:55;2;ATTACK;{'damage': '80'}
+2026-04-07 17:51:55;1;ATTACK;{'damage': '10'}
+2026-04-07 17:51:55;2;ATTACK;{'damage': '10'}
+2026-04-07 17:51:55;1;LOOT;{'item': "Item(id=102, name='Staff', power=66.0)"}
+2026-04-07 17:51:55;2;LOOT;{'item': "Item(id=102, name='Staff', power=72.60000000000001)"}
+2026-04-07 17:51:55;1;ATTACK;{'damage': '61'}
+2026-04-07 17:51:55;2;ATTACK;{'damage': '61'}
+2026-04-07 17:51:55;1;LOOT;{'item': "Item(id=102, name='Staff', power=72.60000000000001)"}
+2026-04-07 17:51:55;2;LOOT;{'item': "Item(id=102, name='Staff', power=79.86000000000001)"}
+2026-04-07 17:51:55;1;ATTACK;{'damage': '20'}
+2026-04-07 17:51:55;2;ATTACK;{'damage': '20'}
+2026-04-07 17:51:55;1;ATTACK;{'damage': '40'}
+2026-04-07 17:51:55;2;ATTACK;{'damage': '40'}
+2026-04-07 17:51:55;1;ATTACK;{'damage': '8'}
+2026-04-07 17:51:55;2;ATTACK;{'damage': '8'}
+2026-04-07 17:51:55;1;ATTACK;{'damage': '1'}
+2026-04-07 17:51:55;2;ATTACK;{'damage': '1'}
