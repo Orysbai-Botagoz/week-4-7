@@ -28,6 +28,8 @@ class User:
         email = parts[2].strip()
         return cls(id, name, email)
 
+
+
 #3 task
 class Product:
     def __init__(self, id, name, price, category):
@@ -35,6 +37,9 @@ class Product:
         self._name = str(name)
         self.price = float(price)
         self.category = str(category)
+
+    def __repr__(self):
+        return f"Product({self._id}, \"{self._name}\", {self.price}, \"{self.category}\")"
 
     def __str__(self):
         return f"Product(id={self._id}, name='{self._name}', price={self.price}, category='{self.category}')"
