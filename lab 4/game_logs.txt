@@ -1,20 +1,16 @@
-2026-04-07 17:57:30;1;LOOT;{'item': "Item(id=101, name='Axe', power=40)"}
-2026-04-07 17:57:30;2;LOOT;{'item': "Item(id=101, name='Axe', power=44.0)"}
-2026-04-07 17:57:30;1;LOOT;{'item': "Item(id=103, name='Shield', power=30)"}
-2026-04-07 17:57:30;2;LOOT;{'item': "Item(id=103, name='Shield', power=33.0)"}
-2026-04-07 17:57:30;1;LOOT;{'item': "Item(id=103, name='Shield', power=33.0)"}
-2026-04-07 17:57:30;2;LOOT;{'item': "Item(id=103, name='Shield', power=36.300000000000004)"}
-2026-04-07 17:57:30;1;ATTACK;{'damage': '67'}
-2026-04-07 17:57:30;2;ATTACK;{'damage': '67'}
-2026-04-07 17:57:30;1;ATTACK;{'damage': '13'}
-2026-04-07 17:57:30;2;ATTACK;{'damage': '13'}
-2026-04-07 17:57:30;1;LOOT;{'item': "Item(id=103, name='Shield', power=36.300000000000004)"}
-2026-04-07 17:57:30;2;LOOT;{'item': "Item(id=103, name='Shield', power=39.93000000000001)"}
-2026-04-07 17:57:30;1;LOOT;{'item': "Item(id=102, name='Staff', power=60)"}
-2026-04-07 17:57:30;2;LOOT;{'item': "Item(id=102, name='Staff', power=66.0)"}
-2026-04-07 17:57:30;1;ATTACK;{'damage': '85'}
-2026-04-07 17:57:30;2;ATTACK;{'damage': '85'}
-2026-04-07 17:57:30;1;LOOT;{'item': "Item(id=103, name='Shield', power=39.93000000000001)"}
-2026-04-07 17:57:30;2;LOOT;{'item': "Item(id=103, name='Shield', power=43.92300000000001)"}
-2026-04-07 17:57:30;1;LOOT;{'item': "Item(id=101, name='Axe', power=44.0)"}
-2026-04-07 17:57:30;2;LOOT;{'item': "Item(id=101, name='Axe', power=48.400000000000006)"}
+2026-04-11 11:59:33;1;LOOT;{'item': "Item(id=20, name='item_3', power=20)"}
+2026-04-11 11:59:33;2;LOOT;{'item': "Item(id=20, name='item_3', power=22.0)"}
+2026-04-11 11:59:33;1;ATTACK;{'damage': '59'}
+2026-04-11 11:59:33;2;ATTACK;{'damage': '59'}
+2026-04-11 11:59:33;1;LOOT;{'item': "Item(id=15, name='item_2', power=40)"}
+2026-04-11 11:59:33;2;LOOT;{'item': "Item(id=15, name='item_2', power=44.0)"}
+2026-04-11 11:59:33;1;ATTACK;{'damage': '7'}
+2026-04-11 11:59:33;2;ATTACK;{'damage': '7'}
+2026-04-11 11:59:33;1;ATTACK;{'damage': '85'}
+2026-04-11 11:59:33;2;ATTACK;{'damage': '85'}
+2026-04-11 11:59:33;1;ATTACK;{'damage': '4'}
+2026-04-11 11:59:33;2;ATTACK;{'damage': '4'}
+2026-04-11 11:59:33;1;LOOT;{'item': "Item(id=20, name='item_3', power=22.0)"}
+2026-04-11 11:59:33;2;LOOT;{'item': "Item(id=20, name='item_3', power=24.200000000000003)"}
+2026-04-11 11:59:33;1;LOOT;{'item': "Item(id=20, name='item_3', power=24.200000000000003)"}
+2026-04-11 11:59:33;2;LOOT;{'item': "Item(id=20, name='item_3', power=26.620000000000005)"}

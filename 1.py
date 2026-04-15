@@ -37,8 +37,9 @@ class Player:
 
     def __str__(self):
         return f"Player(id={self._id}, name='{self._name}', hp={self._hp}')"
-#17 task
+
     def __del__(self):
+        # Серверде бұл тек консольге шығады
         print(f"Player {self._name} жойылды")
 
     def to_dict(self):
