@@ -1,6 +1,6 @@
 #1 task
 from typing import List
-from datatime import datetime
+from datetime import datetime
 
 
 class User:
@@ -11,8 +11,10 @@ class User:
         if "@" not in email:
             raise ValueError("Invalid email")
         self._email = email
+
     def __str__(self):
         return f"User(id={self._id}, name='{self._name}', email='{self._email}')"
+
     def __del__(self):
         print(f"User <{self._name}> deleted")
         pass
@@ -33,10 +35,13 @@ class Product:
         self._name = str(name)
         self.price = float(price)
         self.category = str(category)
+
     def __str__(self):
         return f"Product(id={self._id}, name='{self._name}', price={self.price}, category='{self.category}')"
+
     def __hash__(self): #экономия времени
         return hash(self._id)
+
     def __eq__(self, other): #экономия времени
         if not isinstance(other, Product):
             return False
@@ -53,21 +58,27 @@ class Product:
 class Inventory:
     def __init__(self, products: List[Product] = None):
         self._products = {}
+
     def add_product(self, product: Product):
         product_id = product._id
         if product_id in self._products:
             raise ValueError(f"Product <{product_id}> already exists")
         self._products[product_id] = product
         pass
+
     def remove_product(self, product_id: int):
         if product_id in self._products:
             del self._products[product_id]
+
     def get_product(self, product_id: int):
         return self._products.get(product_id)
+
     def get_all_products(self):
         return list(self._products.values())
+
     def unique_products(self):
         return list(set(self._products.values()))
+
     def to_dict(self):
         return {product_id: product.to_dict() for product_id, product in self._products.items()}
 
@@ -103,5 +114,61 @@ class Logger:
                 logs.append(log_entry)
             return logs
 
+#7 task
+class Order:
+    def __init__(self, order_id: int, user: User, products: List[Product]):
+        self._id = order_id
+        self._user = user
+        self._products = products if products is not None else []
+
+    def add_product(self, product: Product):
+        self._products.append(product)
+
+    def remove_product(self, product_id: int):
+        for product in self._products:
+            if product._id == product_id:
+                self._products.remove(product)
+                break
+
+    def total_price(self):
+        total = 0
+        for product in self._products:
+            total += product.price
+        return total
+
+    def __str__(self):
+        id = self._id
+        name = self._user._name
+        total_price = self.total_price()
+        items_count = len(self._products)
+        return f"Order id:{id} | Customer: {name} | Items: {items_count} | Total: ${total_price}"
+
+#8 task
+    def most_expensive_products(self, n: int) -> list[Product]:
+        sorted_list = sorted(self._products, key = lambda p: p.price, reverse=True)
+        return sorted_list[:n]
+
+#9 task
+def price_stream(products):
+    for product in products:
+        yield product.price #генератор
+
+#10 task
+class OrderIterator:
+    def __init__(self, orders: list[Order]):
+        self._order = orders
+        self._index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._index < len(self._order):
+            product = self._order[self._index]
+            self._index += 1
+            return product
+            pass
+        else:
+            raise StopIteration
 
 
