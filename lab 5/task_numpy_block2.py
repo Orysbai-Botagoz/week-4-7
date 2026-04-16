@@ -84,15 +84,17 @@ products = []
 for order in orders:
     products.extend(order._products)
 
-print(create_orders_matrix(orders))
-cats = create_category_array(products)
-print(count_unique_categories(cats))
-print(filter_prices_by_category(products))
-print(reduce_prices(products))
-print(create_orders_matrix(orders))
-average = create_orders_matrix(orders)
-print(average)
-print(average_purchase_per_user(average))
-print(get_indices_over_1000(average))
+rows = []
+for order in orders:
+    for product in order._products:
+        row = {
+            "order_id": order._id,
+            "user_name": order._user._name,
+            "product_name": product.name,
+            "category": product.category,
+            "price": product.price,
+        }
+        rows.append(row)
+
 
 
