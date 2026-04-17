@@ -69,8 +69,8 @@ u1 = User(1, "Alice", "alice@example.com")
 u2 = User(2, "Bob", "bob@example.com")
 u3 = User(3, "Charlie", "charlie@email.com")
 
-p1 = Product(1, "Laptop", 1200.0, "Electronics")
-p2 = Product(2, "Mouse", 25.0, "Electronics")
+p1 = Product(1, "Mouse", 1200.0, "Electronics")
+p2 = Product(2, "T-shirt", 25.0, "Clothing")
 p3 = Product(3, "Laptop", 1225.0, "Electronics")
 
 
@@ -78,7 +78,8 @@ p3 = Product(3, "Laptop", 1225.0, "Electronics")
 orders = [
     Order(1, u1, [p1]),          # Список из одного товара
     Order(2, u2, [p2]),
-    Order(3, u3, [p3])           # Список из двух товаров
+    Order(3, u3, [p3]),          # Список из двух товаров
+    Order(4, u2, [p1])
 ]
 products = []
 for order in orders:
@@ -96,5 +97,16 @@ for order in orders:
         }
         rows.append(row)
 
+orders_data = []
+users_data = {}
+for order in orders:
+    orders_data.append({
+        "order_id": order._id,
+        "user_id": order._user._id,
+        "total": order.total_price(),
+    })
+    u = order._user
+    if u._id not in users_data:
+        users_data[u._id] = {'user_id': u._id, "user_name": u._name}
 
 
