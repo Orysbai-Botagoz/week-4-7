@@ -69,7 +69,7 @@ u1 = User(1, "Alice", "alice@example.com")
 u2 = User(2, "Bob", "bob@example.com")
 u3 = User(3, "Charlie", "charlie@email.com")
 
-p1 = Product(1, "Mouse", 1200.0, "Electronics")
+p1 = Product(1, "Mouse", 400, "Electronics")
 p2 = Product(2, "T-shirt", 25.0, "Clothing")
 p3 = Product(3, "Laptop", 1225.0, "Electronics")
 
